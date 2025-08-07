@@ -17,6 +17,18 @@ const PORT = process.env.PORT || 3000;
 const activeGames = {};
 
 /**
+ * Simple ping endpoint for health checks
+ */
+app.get('/ping', (req, res) => {
+  console.log('Ping endpoint hit');
+  res.json({
+    status: 'ok',
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime()
+  });
+});
+
+/**
  * Interactions endpoint URL where Discord will send HTTP requests
  * Parse request body and verifies incoming requests using discord-interactions package
  */
